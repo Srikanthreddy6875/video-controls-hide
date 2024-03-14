@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Player</title>
+  <style>
+    body {
+  font-family: Arial, sans-serif;
+}
+
+.vd-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.video-wrapper {
+  position: relative;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+button {
+  margin: 0 5px;
+}
+video::-webkit-media-controls-fullscreen-button {
+    display: none;
+}
+video::-webkit-media-controls-play-button {
+  display: none;
+}
+video::-webkit-media-controls-timeline {
+  display: none;
+}
+video::-webkit-media-controls-current-time-display{
+  display: none;
+}
+video::-webkit-media-controls-time-remaining-display {
+  display: none;
+}
+video::-webkit-media-controls-mute-button {
+  display: none;
+}
+video::-webkit-media-controls-toggle-closed-captions-button {
+  display: none;
+}
+video::-webkit-media-controls-volume-slider {
+  display: none;
+}
+video::-webkit-media-controls-panel {
+ display: none;
+}
+
+
+  </style>
+</head>
+<body>
+
+  <div id="wrapper" class="vd-wrapper">
+
+    <div class="video-wrapper">
+      <video id="video" >      
+        <source src="/video player/2 Minutes Of Beautiful Scenery's On Planet Earth_Nature Is Power_Episode 01.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <div class="controls">
+      <button id="full-screen-icon">Fullscreen</button>
+      <button id="play">Play</button>
+    </div>
+  </div>
+  <script>
+    window.onload = function(){
+  let fullScreen = document.getElementById("full-screen-icon");
+  fullScreen.addEventListener("click", toggleFullScreen);
+
+  let playButton = document.getElementById("play");
+  playButton.addEventListener("click", play);
+}
+
+function toggleFullScreen() {
+  let video = document.getElementById("video");
+  if (!document.fullscreenElement) {
+    video.requestFullscreen().catch(error => {
+      console.log('Request fullscreen failed:', error);
+    });
+  } else {
+    document.exitFullscreen().catch(error => {
+      console.log('Exit fullscreen failed:', error);
+    });
+  }
+}
+
+function play(){
+  let video = document.getElementById("video");
+  video.load();
+  video.play();  
+}
+
+  </script>
+</body>
+</html>
